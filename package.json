@@ -1,5 +1,5 @@
 {
-  "name": "astro-ensamnle-course",
+  "name": "astro-ensamble-course",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -17,3 +17,4 @@
     "typescript": "^5.5.2"
   }
 }
+
