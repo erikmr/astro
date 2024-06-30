@@ -3,7 +3,7 @@ import PokemonCard from "../components/pokemons/PokemonCard.astro";
 import type { PokemonListResponse } from "../interfaces/pokemon-list.response";
 import MainLayout from "../layouts/MainLayout.astro";
 
-const title = "Pokémon Static | Home"
+const title = "Astro Course | Home"
 
 const resp = await fetch('https://pokeapi.co/api/v2/pokemon')
 const data = (await resp.json()) as PokemonListResponse;
