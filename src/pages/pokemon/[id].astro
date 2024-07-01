@@ -1,39 +1,36 @@
 ---
 import type { GetStaticPaths } from "astro";
+import type { PokemonListResponse } from "@interfaces/pokemon-list.response";
 import MainLayout from "@layouts/MainLayout.astro";
 import PokemonCard from "@components/pokemons/PokemonCard.astro";
-import type { PokemonListResponse } from "@interfaces/pokemon-list.response";
+
+
 
 export const getStaticPaths = (async () => {
     const resp = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
     const { results } = (await resp.json()) as PokemonListResponse;
-    return results.map((result) => ({
-        params: { name: result.name },
-        props: { pokemon: result }
-
-    }))
+    return results.map((result) => {
+        const id = result.url.split('/').at(-2);
+        return {
+            params: { id: id},
+            props: { pokemon: result }
+        }
+    })
 }) satisfies GetStaticPaths;
+
 interface Props {
     pokemon: {
         name: string;
         url:  string;
     }
 } 
-
-const{ name } = Astro.params;
+const{ id } = Astro.params;
 const { pokemon } = Astro.props;
-const id = pokemon.url.split('/').at(-2);
 const audioSrc = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`;
-const imageSrc= `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
-
 ---
 
 
-<MainLayout 
-    title={`Pokemon: ${id} -  ${pokemon.name}`}
-    description={`Información de ${pokemon.name}`}
-    image={imageSrc}
->
+<MainLayout title="">
     <section class="grid grid-cols-3 gap-4">
         <div>
             <a href="/">Regresar</a>
