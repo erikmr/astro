@@ -6,7 +6,7 @@ import MainLayout from "@layouts/MainLayout.astro";
 
 ---
 <MainLayout title="Astro Course | Favorites">
-    <Title>Lista de Favoritos</Title>
+    <Title>Islas</Title>
     <div
         style={{
             height: "200px",
@@ -18,11 +18,12 @@ import MainLayout from "@layouts/MainLayout.astro";
     </div>
     <Counter 
         transition:persist="counter"
-        transition:persist-props
         client:visible 
-        initialValue={10}
+        transition:persist-props
+        initialValue={20}
+    
     >
-    <Title>Favoritos</Title>
+    <Title>Islas</Title>
     </Counter>
 
 

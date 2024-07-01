@@ -4,6 +4,7 @@ import MainLayout from "@layouts/MainLayout.astro";
 import PokemonCard from "@components/pokemons/PokemonCard.astro";
 import type { PokemonListResponse } from "@interfaces/pokemon-list.response";
 import Title from "@components/shared/Title.astro";
+import { Icon } from "astro-icon/components";
 
 export const getStaticPaths = (async () => {
     const resp = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
@@ -35,22 +36,34 @@ const imageSrc= `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprite
     description={`Información de ${pokemon.name}`}
     image={imageSrc}
 >
-    <section class="grid grid-cols-3 gap-4">
-        <div>
-            <button 
-            onclick="history.back()"
-            class="text-blue-500" >Regresar</button>
-            <Title>Información de {pokemon.name}</Title>
+    <section class="mt-10 mx-10 flex flex-col justify-center items-center">
+        <div class="flex flex-row">
+            <div> 
+                <button 
+                onclick="history.back()"
+                class="text-blue-500" >Regresar</button>
+                <Title>{pokemon.name}</Title>
+            </div>
+        
+            <button id="btn-favorite" class="ml-4">
+                <Icon name="heart-outline" size={50}  />
+                <Icon class="hidden" name="heart-full" size={50}  />
+            </button>
         </div>
+
+ 
+        <PokemonCard pokemon={pokemon} isBig />
+        <audio controls class="mt-5">
+            <source src={audioSrc} type="audio/ogg" />
+            Your browser does not support the audio element.
+        </audio>
     </section>
-    <PokemonCard pokemon={pokemon} isBig />
-    <audio controls class="mt-5">
-        <source src={audioSrc} type="audio/ogg" />
-        Your browser does not support the audio element.
-    </audio>
 </MainLayout>
 <style>
-    {
+    a{
         @apply hover:underline text-blue-500;
+    }
+    #btn-favorite {
+        @apply hover:animate-pulse;
     }
 </style>
