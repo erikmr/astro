@@ -24,7 +24,6 @@ const{ name } = Astro.params;
 const { pokemon } = Astro.props;
 const id = pokemon.url.split('/').at(-2);
 const audioSrc = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`;
-console.log("🚀 ~ audioSrc:", audioSrc)
 ---
 
 
