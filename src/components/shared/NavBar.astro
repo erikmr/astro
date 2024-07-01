@@ -1,0 +1,36 @@
+---
+
+const links = [
+    { name: 'home', href: '/' },
+    { name: 'Paginado', href: '/pokemons/1' },
+    { name: 'favoritos', href: '/favorites' },
+]
+const currenPath = Astro.url.pathname
+---
+
+<!-- component -->
+<nav class="bg-slate-800 shadow ">
+    <div class="container flex items-center justify-center p-6 mx-auto text-gray-600 capitalize ">
+       {
+        links.map((link) => (
+            <div> 
+                <a href={link.href} 
+                    class="text-gray-200 dark:text-gray-200 mx-1.5 sm:mx-6"
+                >
+                    {link.name}
+                </a>
+                {
+                    currenPath === link.href ? (
+                        <div 
+                            transition:name="menu-line"
+                            class="border-b-2 border-blue-500 mx-4" />
+                    ):(
+                        <div class="border-b-2 border-transparent" />
+                    )
+                }
+            </div>
+        ))
+       } 
+    </div>
+</nav>
+
