@@ -1,4 +1,6 @@
 ---
+
+
 import { ViewTransitions } from 'astro:transitions'
 import { siteInfo } from 'src/const/site-info'
 import NavBar from '@components/shared/NavBar.astro'
@@ -43,7 +45,8 @@ const {
 	<body class="bg-slate-800 text-slate-100 m-auto max-w-3xl">
 		<NavBar />
 		<main class="mt-10 m-auto max-w-3xl mx-4">
-		
+			<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+
 			<slot />
 		</main>
 	</body>
